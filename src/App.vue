@@ -1,23 +1,27 @@
 <template>
-  <v-app>
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+  <div>
+    <h1>Liste d'articles</h1>
+    <div class="container_product">
+      <product />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import product from "./components/ProductShop";
 
 export default {
-  name: 'App',
-
   components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-}
+    product
+  }
+};
 </script>
+<style>
+.container_product{
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: flex-start;
+}
+</style>
