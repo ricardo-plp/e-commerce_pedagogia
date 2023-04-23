@@ -1,28 +1,35 @@
 <template>
   <div>
-    <h1>Liste d'articles</h1>
+    <NavBar/>
     <div class="container_product">
-      <product />
+      <ProductShop/>
     </div>
+
   </div>
-  <FooterMenu/>
+
 </template>
 
 <script>
-import product from "./components/ProductShop";
 
+
+import ProductShop from "@/components/ProductShop";
+import NavBar from "@/components/NavBar";
 export default {
   components: {
-    product
+
+    ProductShop,
+    NavBar
+
   }
 };
 </script>
 <style>
-.container_product{
+.container_product {
   display: flex;
-  width: 80%;
+  width: 90%;
   flex-wrap: wrap;
   margin: auto;
   justify-content: flex-start;
+  padding-top: 100px;
 }
 </style>
