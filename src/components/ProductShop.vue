@@ -71,6 +71,7 @@
 
       <v-card-actions>
         <v-btn
+            style="cursor: pointer;"
             color="deep-purple-lighten-2"
             variant="text"
             @click="reserve"
