@@ -5,6 +5,7 @@
       <product />
     </div>
   </div>
+  <FooterMenu/>
 </template>
 
 <script>

@@ -1,59 +1,100 @@
+
 <template>
   <v-card
-      class="mx-auto box-product"
-      max-width="344"
+      :loading="loading"
+      class="mx-auto my-12"
+      max-width="374"
       v-for="item in items" :key="item.id"
   >
+    <template v-slot:loader="{ isActive }">
+      <v-progress-linear
+          :active="isActive"
+          color="deep-purple"
+          height="4"
+          indeterminate
+      ></v-progress-linear>
+    </template>
+
     <v-img
+        height="250"
         :src="item.image"
-        height="200px"
-        coverweb
     ></v-img>
 
-    <v-card-title>
-      {{ item.title }}
-    </v-card-title>
+    <v-card-item>
+      <v-card-title>{{ item.title }}</v-card-title>
 
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
+      <v-card-subtitle>
+        <span class="me-1">Local Favorite</span>
+
+        <v-icon
+            color="error"
+            icon="mdi-fire-circle"
+            size="small"
+        ></v-icon>
+      </v-card-subtitle>
+    </v-card-item>
+
+    <v-card-text>
+      <v-row
+          align="center"
+          class="mx-0"
+      >
+        <v-rating
+            :model-value="item.rating.rate"
+            color="amber"
+            density="compact"
+            half-increments
+            readonly
+            size="small"
+        ></v-rating>
+
+        <div class="text-grey ms-4">
+          {{ item.rating.rate }} ({{ item.rating.count }})
+        </div>
+      </v-row>
+
+      <div class="my-4 text-subtitle-1">
+        $ • Italian, Cafe
+      </div>
+
+      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+    </v-card-text>
+
+    <v-divider class="mx-4 mb-1"></v-divider>
+
+    <v-card-title>Tonight's availability</v-card-title>
+
+    <div class="px-4">
+      <v-chip-group v-model="selection">
+        <v-chip>5:30PM</v-chip>
+
+        <v-chip>7:30PM</v-chip>
+
+        <v-chip>8:00PM</v-chip>
+
+        <v-chip>9:00PM</v-chip>
+      </v-chip-group>
+    </div>
 
     <v-card-actions>
       <v-btn
-          color="orange-lighten-2"
+          color="deep-purple-lighten-2"
           variant="text"
-
+          @click="reserve"
       >
-        Acheter
+        Reserve
       </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-          :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-          @click="show = !show"
-      ></v-btn>
     </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          description
-        </v-card-text>
-      </div>
-    </v-expand-transition>
-    <br><br>
   </v-card>
-
 </template>
+
 
 <script>
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      show: false,
     };
   },
   created() {
