@@ -4,8 +4,7 @@ node_modules
 /public
 
 package-lock.json
-babel.config.js
-jsconfig.json
+
 
 # local env files
 .env.local
