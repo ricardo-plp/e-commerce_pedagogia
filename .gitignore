@@ -2,7 +2,7 @@
 node_modules
 /dist
 /public
-package.json
+
 package-lock.json
 babel.config.js
 jsconfig.json
